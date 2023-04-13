@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+.search  button{
+  background-color: #1890ff;
+}
+
+.search svg{
+  color: white;
+}
