@@ -1,5 +1,6 @@
 import 'antd/dist/antd.min.css';
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { Table, Input, Select, Space, Button } from 'antd';
 //import { isParameter } from 'typescript';
 
@@ -18,11 +19,14 @@ function UserTable() {
 
 
   const [dataSource, setDataSource] = useState([]);
-  fetch("http://localhost:3000/data")
-    .then(function (res) {
-      return res.json()
-    })
-    .then(data => setDataSource(data));
+  useEffect(() => {
+    fetch("http://localhost:3000/data")
+      .then(function (res) {
+        return res.json()
+      })
+      .then(data => setDataSource(data));
+  }, [dataSource])
+
 
 
 
@@ -56,7 +60,7 @@ function UserTable() {
     {
       title: 'Action',
       key: 'action',
-      render: (record) => {
+      render: (_, record) => {
         return <Space size="middle">
           <Button onClick={handleEdit}>Edit</Button>
           <button onClick={handleDelete}>Delete</button>
@@ -81,6 +85,16 @@ function UserTable() {
     //   return [...pre, newFood]
     // })
   }
+
+  // function handleDelete(id){
+  //   var options={
+  //     method : 'DELETE',
+  //     headers:{
+  //       'content-Type': 'application/json'
+  //     },
+
+  //   }
+  // }
   return (
 
     <div
