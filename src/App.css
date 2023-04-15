@@ -8,3 +8,9 @@
 .search svg{
   color: white;
 }
+.search input{
+  border-radius: 5px;
+}
+.select span{
+border-radius: 5px;
+}

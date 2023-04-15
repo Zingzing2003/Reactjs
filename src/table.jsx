@@ -1,144 +1,140 @@
 import 'antd/dist/antd.min.css';
 import { useState } from 'react';
-import {Table,Input,Select} from 'antd';
+import { Table, Input, Select, Space, Button } from 'antd';
 //import { isParameter } from 'typescript';
 
-function UserTable ( ) {
+function UserTable() {
 
 
-  const [search,setSearch]= useState('');
+  const [search, setSearch] = useState('');
 
-  const handleSearch=(value)=>setSearch(value);
-   
-  const  handleOnchange=(e)=>{
-    if( e=== "All group") e='';
+  const handleSearch = (value) => setSearch(value);
+
+  const handleOnchange = (e) => {
+    if (e === "All group") e = '';
+    //console.log(e);
     setSearch(e)
   };
 
-  
 
-  const dataSource=[
-    {
-      key:1,
-      foodName:"Name A",
-      dob: '1/1/1970',
-      address: 100,
-      fbGroups:"updating...",
-      group:"ban hang",
+  const [dataSource, setDataSource] = useState([]);
+  fetch("http://localhost:3000/data")
+    .then(function (res) {
+      return res.json()
+    })
+    .then(data => setDataSource(data));
 
 
-    },
-    {
-      key:2,
-      foodName:"Name B",
-      dob: '1/1/1970',
-      address: 100,
-      fbGroups:"updating...",
-      group:"ban hang",
 
+  const columns = [
+    {
+      title: "Food Name",
+      dataIndex: "foodName",
+      sorter: (a, b) => a - b,
     },
     {
-      key:3,
-      foodName:"Name C",
-      dob: '1/1/1970',
-      address: 100,
-      fbGroups:"updating...",
-      group:"di choi",
-
+      title: "Dob",
+      dataIndex: "dob",
     },
     {
-      key:4,
-      foodName:"Name D",
-      dob: '1/1/1970',
-      address: 100,
-      fbGroups:"updating...",
-      group:"da bong",
-    },
-  ]
-  const columns=[
-    {
-      title:"Food Name",
-      dataIndex:"foodName",
-      
+      title: "Address",
+      dataIndex: "address",
     },
     {
-      title:"Dob",
-      dataIndex:"dob",
+      title: "FB Groups",
+      dataIndex: "fbGroups",
     },
     {
-      title:"Address",
-      dataIndex:"address",
-    },
-    {
-      title:"FB Groups",
-      dataIndex:"fbGroups",
-    },
-    {
-      title:"Group",
-      dataIndex:"group",
-      filteredValue:[search],
-      onFilter:(value, record)=>{
-        return  String(record.group).toLowerCase().includes(value.toLowerCase());
+      title: "Type Food",
+      dataIndex: "typeFood",
+      filteredValue: [search],
+      onFilter: (value, record) => {
+        return String(record.typeFood).toLowerCase().includes(value.toLowerCase());
       },
 
     },
-    
+    {
+      title: 'Action',
+      key: 'action',
+      render: (record) => {
+        return <Space size="middle">
+          <Button onClick={handleEdit}>Edit</Button>
+          <button onClick={handleDelete}>Delete</button>
+        </Space>
+
+      },
+    },
+
   ]
- 
-  
 
 
-    return (
+  const handleEdit = (record) => {
 
-        <div
-            // style={{display: 'flex'}}
-        >
-        <div  style={{display: 'flex'}}>
+  }
+  const handleDelete = (record) => {
+    console.log(record);
+    // return console.log(record);
+  };
+  const onAddFood = () => {
+
+    // setDataSource(pre=>{
+    //   return [...pre, newFood]
+    // })
+  }
+  return (
+
+    <div
+    // style={{display: 'flex'}}
+    >
+      <Button onClick={onAddFood} style={{ margin: 'auto', display: 'block', width: '150px' }}>Thêm Món Ăn</Button>
+
+      <div style={{ display: 'flex' }}>
+
         <Input.Search
-                                    className='search'
-                                    placeholder='Type to search...'
-                                    style={{ padding: '8', borderRadius: '5px' }}
-                                    onSearch={handleSearch}
-                            
-                                  >
+          className='search'
+          placeholder='Type to search...'
+          style={{ padding: '8', borderRadius: '25px' }}
+          onSearch={handleSearch}
+
+        >
         </Input.Search>
         <Select
-                                    
-                                    defaultValue="All Group"
-                                    onChange={handleOnchange}
-                                  
-                                  >
-                                      <Select.Option value="All group">
-                                        All group
-                                      </Select.Option >
+          className='select'
+          defaultValue="All Type"
+          onChange={handleOnchange}
 
-                                      <Select.Option value="ban hang">
-                                        ban hang
-                                      </Select.Option >
+        >
+          <Select.Option value="All group">
+            All group
+          </Select.Option >
 
-                                      <Select.Option value="choi game">
-                                        choi game
-                                      </Select.Option>
-                                      
-                                      
+          <Select.Option value="ban hang">
+            ban hang
+          </Select.Option >
+
+          <Select.Option value="choi game">
+            choi game
+          </Select.Option>
+
+
 
         </Select>
-        </div>
-       
-        <Table
-                                  rowSelection={{
-                                    type: 'checkbox',
-                                    getCheckboxProps: (record) => (
-                                      { name: record.name }
-                                    )
-                                  }}
-                                  dataSource={dataSource}
-                                  columns={columns}
-                                >
+      </div>
 
-        </Table>
-        
-        </div>
-    )
+      <Table
+        rowSelection={{
+          type: 'checkbox',
+          getCheckboxProps: (record) => (
+            { name: record.name }
+          )
+        }}
+        dataSource={dataSource}
+        columns={columns}
+      >
+
+      </Table>
+
+    </div>
+  )
 }
 export default UserTable;

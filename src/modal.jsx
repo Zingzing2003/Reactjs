@@ -71,14 +71,14 @@ function UserModal({ newData }) {
     date: '',
     action: ''
   });
-  console.log(data);
+  //console.log(data);
 
   return (
     <>
       <Button type='primary' style={{ margin: '20px', borderRadius: "25px" }} onClick={showModal}
-        icon={<UsergroupAddOutlined />}
+        // icon={<UsergroupAddOutlined />}
       >
-        Add Group
+        + Add Food
       </Button>
 
 
