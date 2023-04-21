@@ -33,16 +33,16 @@ function UserModal({ newData }) {
       dataIndex: "id",
     },
     {
-      title: "Group",
-      dataIndex: "group",
+      title: "Food Name",
+      dataIndex: "foodName",
     },
     {
-      title: "Tong So",
-      dataIndex: "tong",
+      title: "Price",
+      dataIndex: "price",
     },
     {
-      title: "Ngay",
-      dataIndex: "date",
+      title: "Type Food",
+      dataIndex: "typeFood",
     },
     {
       title: "Action",
@@ -76,7 +76,7 @@ function UserModal({ newData }) {
   return (
     <>
       <Button type='primary' style={{ margin: '20px', borderRadius: "25px" }} onClick={showModal}
-        // icon={<UsergroupAddOutlined />}
+      // icon={<UsergroupAddOutlined />}
       >
         + Add Food
       </Button>

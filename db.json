@@ -2,42 +2,37 @@
   "data": [
     {
       "id": 1,
-      "foodName": "Name A",
-      "dob": "1/1/1970",
-      "address": 100,
+      "foodName": "Bánh Mì",
+      "price": 100,
       "fbGroups": "updating...",
-      "typeFood": "ban hang"
+      "typeFood": "Ăn Sáng "
     },
     {
       "id": 2,
-      "foodName": "Name B",
-      "dob": "1/1/1970",
-      "address": 100,
+      "foodName": "Phở",
+      "price": 100,
       "fbGroups": "updating...",
-      "typeFood": "ban hang"
+      "typeFood": "Ăn Sáng"
     },
     {
       "id": 3,
-      "foodName": "Name C",
-      "dob": "1/1/1970",
-      "address": 100,
+      "foodName": "Thịt Kho",
+      "price": 100,
       "fbGroups": "updating...",
-      "typeFood": "di choi"
+      "typeFood": "Ăn Trưa"
     },
     {
       "id": 4,
-      "foodName": "Name D",
-      "dob": "1/1/1970",
-      "address": 100,
+      "foodName": "Bánh Tráng",
+      "price": 100,
       "fbGroups": "updating...",
-      "typeFood": "da bong"
+      "typeFood": "Ăn Vặt"
     },
     {
-      "foodName": "name A",
-      "dob": "12",
-      "address": "90",
+      "foodName": "Kemgit",
+      "price": "90",
       "fbGroups": "update",
-      "typeFood": "ban hang",
+      "typeFood": "Ăn Vặt",
       "id": 5
     }
   ]
